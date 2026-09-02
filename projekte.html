@@ -16,8 +16,8 @@
     <header class="site-header">
       <nav class="nav" aria-label="Hauptnavigation">
         <a class="logo" href="index.html">Kaddies Arts</a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
-          Menü
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menü">
+          <span class="nav-burger" aria-hidden="true"></span>
         </button>
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html">Startseite</a></li>
@@ -144,53 +144,23 @@
         <p class="wannado-empty" data-mini-empty hidden>Keine Projekte zu diesem Filter.</p>
       </section>
 
-      <section class="section wrap" aria-labelledby="large-projects-heading">
-        <div class="section-head">
-          <h2 id="large-projects-heading">Große Projekte</h2>
-        </div>
-        <div class="project-slider" data-slider>
-          <button class="project-arrow" type="button" data-slider-prev aria-label="Vorherige Arbeit">
-          </button>
-          <div class="project-viewport" aria-live="polite">
-            <article class="project">
-              <div class="project-media">
-                <!-- Hier Bild oder Video einfügen, z. B. <img src="img/arbeit-01.jpg" alt=""> oder <video src="img/arbeit-01.mp4" controls></video> -->
-              </div>
-              <div class="project-body">
-                <h3>Centipede - Tokyo Gouhl (Freehand)</h3>
-                <p>Eines meiner Freehandprojekte, die ich umsetzen durfte.</p>
-              </div>
-            </article>
-            <article class="project" hidden>
-              <div class="project-media">
-                <!-- Hier Bild oder Video einfügen -->
-              </div>
-              <div class="project-body">
-                <h3>Arbeit 02</h3>
-                <p>Platzhalter: Kurze Beschreibung zu diesem Motiv.</p>
-              </div>
-            </article>
-            <article class="project" hidden>
-              <div class="project-media">
-                <!-- Hier Bild oder Video einfügen -->
-              </div>
-              <div class="project-body">
-                <h3>Arbeit 03</h3>
-                <p>Platzhalter: Kurze Beschreibung zu diesem Motiv.</p>
-              </div>
-            </article>
-            <article class="project" hidden>
-              <div class="project-media">
-                <!-- Hier Bild oder Video einfügen -->
-              </div>
-              <div class="project-body">
-                <h3>Arbeit 04</h3>
-                <p>Platzhalter: Kurze Beschreibung zu diesem Motiv.</p>
-              </div>
-            </article>
+      <section class="section wrap" aria-label="Galerie">
+        <div class="work-slideshow" data-slideshow>
+          <div class="work-slideshow-frame">
+            <figure class="work-slide is-active">
+              <img src="img/gallery/tausendfuessler-freehand.jpg" alt="Freehand-Tattoo eines Tausendfüßlers" />
+            </figure>
+            <figure class="work-slide">
+              <img src="img/gallery/naruto-animepanel.jpg" alt="Manga-Panel Tattoo mit einem Anime-Auge" />
+            </figure>
+            <figure class="work-slide">
+              <img src="img/gallery/engelsfluegel-wannado.jpg" alt="Wannado-Tattoo mit Engelsflügeln am Handgelenk" />
+            </figure>
+            <figure class="work-slide">
+              <img src="img/gallery/datum-schriftzug.jpg" alt="Schriftzug-Tattoo mit den Jahreszahlen 1980 und 1981" />
+            </figure>
           </div>
-          <button class="project-arrow" type="button" data-slider-next aria-label="Nächste Arbeit">
-          </button>
+          <div class="work-slideshow-dots" data-slideshow-dots></div>
         </div>
       </section>
 

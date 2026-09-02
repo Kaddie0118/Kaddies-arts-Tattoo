@@ -30,6 +30,7 @@ function placeNavIndicator(indicator, box, animate) {
   indicator.style.top = `${box.top}px`;
   indicator.style.width = `${box.width}px`;
   indicator.style.height = `${box.height}px`;
+  indicator.classList.add("is-ready");
 }
 
 function setupNavIndicator(nav) {
@@ -49,26 +50,26 @@ function setupNavIndicator(nav) {
   }
   sessionStorage.removeItem(navIndicatorKey);
 
-  const finishSlide = () => {
-    nav.classList.remove("is-sliding");
+  const placeCurrent = (animate) => {
+    placeNavIndicator(indicator, navItemBox(current, nav), animate);
   };
 
   const startSlide = () => {
     const target = navItemBox(current, nav);
-    const sameNav = from && Math.abs((from.navWidth || 0) - target.navWidth) < 2;
+    const sameNav = from && Math.abs((from.navWidth || 0) - target.navWidth) < 4;
     if (from && from.width && from.height && sameNav && !reduceMotion) {
-      nav.classList.add("is-sliding");
       placeNavIndicator(indicator, from, false);
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => placeNavIndicator(indicator, navItemBox(current, nav), true));
+        requestAnimationFrame(() => placeCurrent(true));
       });
-      indicator.addEventListener("transitionend", finishSlide, { once: true });
-      window.setTimeout(finishSlide, 600);
+      return;
     }
+    placeCurrent(false);
   };
 
   const whenReady = document.fonts?.ready ?? Promise.resolve();
   whenReady.then(() => requestAnimationFrame(startSlide));
+  window.addEventListener("resize", () => placeCurrent(false));
 
   navPageLinks(nav).forEach((link) => {
     link.addEventListener("click", () => {
@@ -82,10 +83,18 @@ function setupNavIndicator(nav) {
 if (links) setupNavIndicator(links);
 
 if (toggle && links) {
+  const desktopNav = window.matchMedia("(min-width: 803px)");
+  const syncNav = () => {
+    if (desktopNav.matches) {
+      links.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  };
   toggle.addEventListener("click", () => {
     const open = links.classList.toggle("open");
     toggle.setAttribute("aria-expanded", String(open));
   });
+  desktopNav.addEventListener("change", syncNav);
 }
 
 function setContactOpen(open) {
@@ -112,31 +121,6 @@ if (contactBtn && contactPanel) {
     }
   });
 }
-
-document.querySelectorAll("[data-slider]").forEach((slider) => {
-  const slides = [...slider.querySelectorAll(".project")];
-  const prev = slider.querySelector("[data-slider-prev]");
-  const next = slider.querySelector("[data-slider-next]");
-  if (!slides.length) return;
-
-  let index = slides.findIndex((slide) => !slide.hidden);
-  if (index < 0) index = 0;
-
-  function show(nextIndex) {
-    index = (nextIndex + slides.length) % slides.length;
-    slides.forEach((slide, i) => {
-      slide.hidden = i !== index;
-    });
-  }
-
-  prev?.addEventListener("click", () => show(index - 1));
-  next?.addEventListener("click", () => show(index + 1));
-
-  slider.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") show(index - 1);
-    if (event.key === "ArrowRight") show(index + 1);
-  });
-});
 
 const year = String(new Date().getFullYear());
 document.querySelectorAll("[data-year]").forEach((el) => {
@@ -362,3 +346,44 @@ if (miniFilters && miniGallery) {
 
 updateOuterGridCorners();
 window.addEventListener("resize", updateOuterGridCorners);
+
+document.querySelectorAll("[data-slideshow]").forEach((slideshow) => {
+  const slides = [...slideshow.querySelectorAll(".work-slide")];
+  const dotsWrap = slideshow.querySelector("[data-slideshow-dots]");
+  if (!slides.length) return;
+
+  let index = slides.findIndex((slide) => slide.classList.contains("is-active"));
+  if (index < 0) index = 0;
+  let timer = null;
+
+  const dots = slides.map((_, i) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "work-slideshow-dot";
+    dot.setAttribute("aria-label", `Bild ${i + 1}`);
+    dot.addEventListener("click", () => show(i));
+    dotsWrap?.append(dot);
+    return dot;
+  });
+
+  function show(nextIndex) {
+    index = (nextIndex + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("is-active", i === index);
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("is-active", i === index);
+    });
+    restart();
+  }
+
+  function restart() {
+    window.clearInterval(timer);
+    if (reduceMotion) return;
+    timer = window.setInterval(() => show(index + 1), 5000);
+  }
+
+  slideshow.addEventListener("mouseenter", () => window.clearInterval(timer));
+  slideshow.addEventListener("mouseleave", restart);
+  show(index);
+});
