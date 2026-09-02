@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 720" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="cutout" x1="80" y1="40" x2="360" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c8e4ff"/>
+      <stop offset="0.45" stop-color="#6aa8e8"/>
+      <stop offset="1" stop-color="#8b6cc9"/>
+    </linearGradient>
+  </defs>
+  <path
+    fill="url(#cutout)"
+    d="M210 78c32 0 58 26 58 58s-26 58-58 58-58-26-58-58 26-58 58-58Zm-86 148c22-18 48-28 86-28s64 10 86 28c28 22 46 58 50 98 4 42-6 92-18 138-8 30-10 52-6 78 6 40 22 74 22 118 0 22-16 40-38 40h-44c-8-36-18-78-40-108-10 32-16 70-20 108H164c-22 0-38-18-38-40 0-44 16-78 22-118 4-26 2-48-6-78-12-46-22-96-18-138 4-40 22-76 50-98Z"
+  />
+</svg>

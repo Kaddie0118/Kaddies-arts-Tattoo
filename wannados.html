@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wannados · Kathi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Give+You+Glory&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a class="logo" href="index.html">Kaddies Arts</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+          Menü
+        </button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Startseite</a></li>
+          <li><a href="ueber-mich.html">Über mich</a></li>
+          <li><a class="nav-wannado" href="wannados.html" aria-current="page">Wannados<span class="nav-new">NEW</span></a></li>
+          <li><a href="projekte.html">Projekte</a></li>
+          <li class="nav-contact">
+            <button
+              class="btn btn-primary nav-contact-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="nav-contact-panel"
+            >
+              Kontakt
+            </button>
+            <div class="nav-contact-panel" id="nav-contact-panel" hidden>
+              <a href="https://www.instagram.com/kaddies_arts/" target="_blank" rel="noopener noreferrer">
+                <svg class="nav-contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8" />
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" />
+                  <circle cx="17.35" cy="6.65" r="1.15" fill="currentColor" />
+                </svg>
+                @kaddies_arts
+              </a>
+              <a href="tel:+491574424942">
+                <svg class="nav-contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M19.05 4.91A9.8 9.8 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.02Zm-7.01 15.24h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.82 2.41 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74 1.76.76 2.12.83 2.87.7.46-.08 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.17-.48-.29Z"/>
+                </svg>
+                0157 4424942
+              </a>
+              <a href="mailto:kaddie.arts@gmail.com">
+                <svg class="nav-contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3.2" y="5.5" width="17.6" height="13" rx="2" stroke="currentColor" stroke-width="1.8" />
+                  <path d="m4.2 7.2 7.8 6.2 7.8-6.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                kaddie.arts@gmail.com
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero wrap">
+        <p class="eyebrow">Wannados</p>
+        <h1>Wannados</h1>
+        <p class="lead">
+          Du hast dich in eines meiner Designs verliebt? Dann sichere dir dein
+          Lieblingsmotiv.
+        </p>
+      </section>
+
+      <section class="section wrap" aria-labelledby="wannado-list-heading">
+        <h2 id="wannado-list-heading" class="visually-hidden">Verfügbare Motive</h2>
+        <div class="wannado-toolbar">
+          <div class="wannado-filters" data-wannado-filters>
+            <div class="wannado-select">
+              <button class="wannado-select-toggle" type="button" aria-expanded="false">
+                Größe
+                <svg class="wannado-filter-arrow" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M5 7.5 10 13l5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="wannado-select-menu" hidden>
+                <label class="wannado-check">
+                  <input type="checkbox" data-size="small" />
+                  klein (bis 7cm)
+                </label>
+                <label class="wannado-check">
+                  <input type="checkbox" data-size="medium" />
+                  mittel (7 bis 14cm)
+                </label>
+                <label class="wannado-check">
+                  <input type="checkbox" data-size="large" />
+                  groß (ab 14cm)
+                </label>
+              </div>
+            </div>
+            <div class="wannado-select">
+              <button class="wannado-select-toggle" type="button" aria-expanded="false">
+                Style
+                <svg class="wannado-filter-arrow" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M5 7.5 10 13l5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="wannado-select-menu" hidden>
+                <label class="wannado-check">
+                  <input type="checkbox" data-style="lineart" />
+                  Lineart
+                </label>
+                <label class="wannado-check">
+                  <input type="checkbox" data-style="blackwork" />
+                  Blackwork
+                </label>
+              </div>
+            </div>
+            <div class="wannado-select">
+              <button class="wannado-select-toggle" type="button" aria-expanded="false">
+                unter 100€
+                <svg class="wannado-filter-arrow" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M5 7.5 10 13l5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="wannado-select-menu" hidden>
+                <label class="wannado-check">
+                  <input type="checkbox" data-under-100 />
+                  unter 100€
+                </label>
+              </div>
+            </div>
+            <button class="wannado-select-toggle wannado-select-reset" type="button" data-show-all>
+              Alle anzeigen
+            </button>
+          </div>
+          <div class="wannado-price-filter" data-price-filter>
+            <div class="wannado-price-ends">
+              <span>50€</span>
+              <span>500€</span>
+            </div>
+            <div class="wannado-price-slider">
+              <div class="wannado-price-track" aria-hidden="true">
+                <div class="wannado-price-fill" data-price-fill></div>
+              </div>
+              <input type="range" min="50" max="500" step="50" value="50" data-price-min aria-label="Mindestpreis" />
+              <input type="range" min="50" max="500" step="50" value="500" data-price-max aria-label="Höchstpreis" />
+            </div>
+            <div class="wannado-price-ticks" aria-hidden="true">
+              <span>50€</span>
+              <span>100€</span>
+              <span>150€</span>
+              <span>200€</span>
+              <span>250€</span>
+              <span>300€</span>
+              <span>350€</span>
+              <span>400€</span>
+              <span>450€</span>
+              <span>500€</span>
+            </div>
+          </div>
+        </div>
+        <div class="wannado-grid" data-wannado-grid>
+          <article class="wannado" data-tags="lineart" data-size="medium">
+            <div class="wannado-visual">
+              <span class="wannado-new">NEU</span>
+              <img src="img/gallery/witchhand-wannado.jpg" alt="Wannado-Motiv Moon-Witch-Hand: Hand mit Mondsymbolen und Ranken" />
+            </div>
+            <div class="wannado-body">
+              <h3>Moon-Witch-Hand</h3>
+              <p class="wannado-price">180€</p>
+              <p class="wannado-tags">
+                <span class="tag" data-style="lineart">Lineart</span>
+                <span class="tag" data-size="medium">mittel</span>
+              </p>
+              <a
+                class="btn btn-primary"
+                href="mailto:kaddie.arts@gmail.com?subject=Anfrage%20Wannado%3A%20Moon-Witch-Hand"
+              >
+                Anfragen
+              </a>
+            </div>
+          </article>
+          <article class="wannado" data-tags="lineart" data-size="large">
+            <div class="wannado-visual">
+              <span class="wannado-new">NEU</span>
+              <img src="img/gallery/angle-head-wannado.jpg" alt="Wannado-Motiv Angle-Head: Lineart-Portrait mit Ornamenten" />
+            </div>
+            <div class="wannado-body">
+              <h3>Angle-Head</h3>
+              <p class="wannado-price">400€</p>
+              <p class="wannado-tags">
+                <span class="tag" data-style="lineart">Lineart</span>
+                <span class="tag" data-size="large">groß</span>
+              </p>
+              <a
+                class="btn btn-primary"
+                href="mailto:kaddie.arts@gmail.com?subject=Anfrage%20Wannado%3A%20Angle-Head"
+              >
+                Anfragen
+              </a>
+            </div>
+          </article>
+          <article class="wannado" data-tags="lineart under-100" data-size="small">
+            <div class="wannado-visual">
+              <span class="wannado-new">NEU</span>
+              <img src="img/gallery/lotus-wannado.png" alt="Wannado-Motiv Lotus: Lineart-Blüte mit Auge" />
+            </div>
+            <div class="wannado-body">
+              <h3>Lotus</h3>
+              <p class="wannado-price">80€</p>
+              <p class="wannado-tags">
+                <span class="tag" data-style="lineart">Lineart</span>
+                <span class="tag" data-size="small">klein</span>
+                <span class="tag" data-under-100>unter 100€</span>
+              </p>
+              <a
+                class="btn btn-primary"
+                href="mailto:kaddie.arts@gmail.com?subject=Anfrage%20Wannado%3A%20Lotus"
+              >
+                Anfragen
+              </a>
+            </div>
+          </article>
+          <article class="wannado" data-tags="lineart" data-size="large">
+            <div class="wannado-visual">
+              <span class="wannado-new">NEU</span>
+              <img src="img/gallery/elfe-wannado.jpg" alt="Wannado-Motiv Elfe: Lineart-Figur mit Flügeln" />
+            </div>
+            <div class="wannado-body">
+              <h3>Elfe</h3>
+              <p class="wannado-price">500€</p>
+              <p class="wannado-tags">
+                <span class="tag" data-style="lineart">Lineart</span>
+                <span class="tag" data-size="large">groß</span>
+              </p>
+              <a
+                class="btn btn-primary"
+                href="mailto:kaddie.arts@gmail.com?subject=Anfrage%20Wannado%3A%20Elfe"
+              >
+                Anfragen
+              </a>
+            </div>
+          </article>
+          <article class="wannado" data-tags="lineart" data-size="medium">
+            <div class="wannado-visual">
+              <span class="wannado-new">NEU</span>
+              <img src="img/gallery/devilish-wannado.jpg" alt="Wannado-Motiv Devilish: Lineart-Portrait mit Hörnern und spitzen Ohren" />
+            </div>
+            <div class="wannado-body">
+              <h3>Devilish</h3>
+              <p class="wannado-price">200€</p>
+              <p class="wannado-tags">
+                <span class="tag" data-style="lineart">Lineart</span>
+                <span class="tag" data-size="medium">mittel</span>
+              </p>
+              <a
+                class="btn btn-primary"
+                href="mailto:kaddie.arts@gmail.com?subject=Anfrage%20Wannado%3A%20Devilish"
+              >
+                Anfragen
+              </a>
+            </div>
+          </article>
+          <article class="wannado" data-tags="blackwork" data-size="medium">
+            <div class="wannado-visual">
+              <span class="wannado-new">NEU</span>
+              <img src="img/gallery/body-tea-wannado.png" alt="Wannado-Motiv Body is tea: Blackwork-Torso vor einem Herz" />
+            </div>
+            <div class="wannado-body">
+              <h3>Body is tea</h3>
+              <p class="wannado-price">200€</p>
+              <p class="wannado-tags">
+                <span class="tag" data-style="blackwork">Blackwork</span>
+                <span class="tag" data-size="medium">mittel</span>
+              </p>
+              <a
+                class="btn btn-primary"
+                href="mailto:kaddie.arts@gmail.com?subject=Anfrage%20Wannado%3A%20Body%20is%20tea"
+              >
+                Anfragen
+              </a>
+            </div>
+          </article>
+          <article class="wannado" data-tags="lineart" data-size="medium">
+            <div class="wannado-visual">
+              <span class="wannado-new">NEU</span>
+              <img src="img/gallery/heart-wannado.png" alt="Wannado-Motiv Heart: Lineart-Herz" />
+            </div>
+            <div class="wannado-body">
+              <h3>Heart</h3>
+              <p class="wannado-price">250€</p>
+              <p class="wannado-tags">
+                <span class="tag" data-style="lineart">Lineart</span>
+                <span class="tag" data-size="medium">mittel</span>
+              </p>
+              <a
+                class="btn btn-primary"
+                href="mailto:kaddie.arts@gmail.com?subject=Anfrage%20Wannado%3A%20Heart"
+              >
+                Anfragen
+              </a>
+            </div>
+          </article>
+          <article class="wannado" data-tags="blackwork" data-size="small">
+            <div class="wannado-visual">
+              <span class="wannado-new">NEU</span>
+              <img src="img/gallery/angelhead-wannado.jpg" alt="Wannado-Motiv Angelhead: Blackwork-Engel mit Flügeln und Heiligenschein" />
+            </div>
+            <div class="wannado-body">
+              <h3>Angelhead</h3>
+              <p class="wannado-price">180€</p>
+              <p class="wannado-tags">
+                <span class="tag" data-style="blackwork">Blackwork</span>
+                <span class="tag" data-size="small">klein</span>
+              </p>
+              <a
+                class="btn btn-primary"
+                href="mailto:kaddie.arts@gmail.com?subject=Anfrage%20Wannado%3A%20Angelhead"
+              >
+                Anfragen
+              </a>
+            </div>
+          </article>
+          <article class="wannado" data-tags="lineart" data-size="small medium">
+            <div class="wannado-visual">
+              <span class="wannado-new">NEU</span>
+              <img src="img/gallery/tribal-butterfly-wannado.png" alt="Wannado-Motiv Tribal Butterfly: Lineart-Schmetterling im Tribal-Stil" />
+            </div>
+            <div class="wannado-body">
+              <h3>Tribal Butterfly</h3>
+              <p class="wannado-price">180€</p>
+              <p class="wannado-tags">
+                <span class="tag" data-style="lineart">Lineart</span>
+                <span class="tag" data-size="small">klein</span>
+                <span class="tag" data-size="medium">mittel</span>
+              </p>
+              <a
+                class="btn btn-primary"
+                href="mailto:kaddie.arts@gmail.com?subject=Anfrage%20Wannado%3A%20Tribal%20Butterfly"
+              >
+                Anfragen
+              </a>
+            </div>
+          </article>
+        </div>
+        <p class="wannado-empty" data-wannado-empty hidden>Keine Motive zu diesem Filter.</p>
+      </section>
+
+      <section class="section" id="kontakt" aria-labelledby="cta-heading">
+        <div class="wrap">
+          <div class="cta-banner">
+            <h2 id="cta-heading">Lass uns dein nächstes Piece planen.</h2>
+            <p>Ich freue mich auf deine Nachricht.</p>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="tel:+491574424942">
+                <svg class="nav-contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M19.05 4.91A9.8 9.8 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.02Zm-7.01 15.24h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.82 2.41 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74 1.76.76 2.12.83 2.87.7.46-.08 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.17-.48-.29Z"/>
+                </svg>
+                0157 4424942
+              </a>
+              <a class="btn btn-ghost" href="mailto:kaddie.arts@gmail.com">
+                <svg class="nav-contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3.2" y="5.5" width="17.6" height="13" rx="2" stroke="currentColor" stroke-width="1.8" />
+                  <path d="m4.2 7.2 7.8 6.2 7.8-6.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                kaddie.arts@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p class="logo">Kaddies Arts</p>
+        <p class="footer-copy">© <span data-year></span> Kaddies_Arts</p>
+        <div class="footer-contact">
+          <div class="footer-actions">
+            <a
+              class="btn btn-ghost"
+              href="https://www.instagram.com/kaddies_arts/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </a>
+            <a class="btn btn-ghost" href="tel:+491574424942">
+                <svg class="nav-contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M19.05 4.91A9.8 9.8 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.02Zm-7.01 15.24h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.82 2.41 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74 1.76.76 2.12.83 2.87.7.46-.08 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.17-.48-.29Z"/>
+                </svg>
+                0157 4424942
+              </a>
+            <a class="btn btn-ghost" href="mailto:kaddie.arts@gmail.com">
+              <svg class="nav-contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3.2" y="5.5" width="17.6" height="13" rx="2" stroke="currentColor" stroke-width="1.8" />
+                <path d="m4.2 7.2 7.8 6.2 7.8-6.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              E-Mail
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>
