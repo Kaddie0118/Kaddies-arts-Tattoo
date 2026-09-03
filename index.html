@@ -88,6 +88,54 @@
         </div>
       </section>
 
+      <section class="section" aria-labelledby="services-heading">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 id="services-heading">Meine Leistungen</h2>
+          </div>
+          <div class="grid-3 services">
+            <article class="card service-card">
+              <div class="service-main">
+                <h3>Freehand Tattoo</h3>
+                <p>
+                  Du möchtest ein einzigartiges handgezeichnetes Motiv, das niemand
+                  außer dir hat? Dann bist du hier richtig.
+                </p>
+              </div>
+              <a class="btn btn-primary" href="#kontakt">Anfragen</a>
+              <div class="service-visual">
+                <img src="img/icons/freehand.png" alt="" />
+              </div>
+            </article>
+            <article class="card service-card" id="wannados">
+              <div class="service-main">
+                <h3>Wannados</h3>
+                <p>
+                  Du hast dich in eines meiner Designs verliebt? Dann sichere dir
+                  dein Lieblingsmotiv.
+                </p>
+              </div>
+              <a class="btn btn-primary" href="wannados.html">Wannado sichern</a>
+              <div class="service-visual">
+                <img src="img/icons/wannados.png" alt="" />
+              </div>
+            </article>
+            <article class="card service-card">
+              <div class="service-main">
+                <h3>Wunschtattoos</h3>
+                <p>
+                  Du hast eine Idee? Lass sie uns gemeinsam umsetzen.
+                </p>
+              </div>
+              <a class="btn btn-primary" href="#kontakt">Anfragen</a>
+              <div class="service-visual">
+                <img src="img/icons/wunschtattoo.png" alt="" />
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="kennenlernen" aria-labelledby="intro-heading">
         <div class="wrap intro">
           <div class="intro-photo">
@@ -105,83 +153,20 @@
         </div>
       </section>
 
-      <section class="section" aria-labelledby="services-heading">
-        <div class="wrap">
-          <div class="section-head">
-            <h2 id="services-heading">Meine Leistungen</h2>
-          </div>
-          <div class="grid-3 services">
-            <article class="card service-card">
-              <div class="service-visual">
-                <img src="img/icons/freehand.png" alt="" />
-              </div>
-              <div class="service-body">
-                <h3>Freehand Tattoo</h3>
-                <p>
-                  Du möchtest ein einzigartiges handgezeichnetes Motiv, das niemand
-                  außer dir hat? Dann bist du hier richtig.
-                </p>
-                <a class="btn btn-primary" href="#kontakt">Anfragen</a>
-              </div>
-            </article>
-            <article class="card service-card" id="wannados">
-              <div class="service-visual">
-                <img src="img/icons/wannados.png" alt="" />
-              </div>
-              <div class="service-body">
-                <h3>Wannados</h3>
-                <p>
-                  Du hast dich in eines meiner Designs verliebt? Dann sichere dir
-                  dein Lieblingsmotiv.
-                </p>
-                <a class="btn btn-primary" href="wannados.html">Zu den Wannados</a>
-              </div>
-            </article>
-            <article class="card service-card">
-              <div class="service-visual">
-                <img src="img/icons/wunschtattoo.png" alt="" />
-              </div>
-              <div class="service-body">
-                <h3>Wunschtattoos</h3>
-                <p>
-                  Du hast eine Idee? Lass sie uns gemeinsam umsetzen.
-                </p>
-                <a class="btn btn-primary" href="#kontakt">Anfragen</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section class="section gallery-section" aria-labelledby="gallery-heading">
         <div class="wrap section-head">
           <p class="eyebrow">Galerie</p>
           <h2 id="gallery-heading">Einblicke in meine Arbeit :)</h2>
         </div>
-        <div class="wrap gallery">
-          <div class="gallery-col">
-            <figure class="gallery-item">
-              <img src="img/gallery/tausendfuessler-freehand.jpg" alt="Freehand-Tattoo eines Tausendfüßlers" />
-            </figure>
-            <figure class="gallery-item">
-              <img src="img/gallery/naruto-animepanel.jpg" alt="Manga-Panel Tattoo mit einem Anime-Auge" />
-            </figure>
-          </div>
-          <div class="gallery-col">
-            <figure class="gallery-item">
-              <img src="img/gallery/engelsfluegel-wannado.jpg" alt="Wannado-Tattoo mit Engelsflügeln am Handgelenk" />
-            </figure>
-            <figure class="gallery-item">
-              <img src="img/gallery/datum-schriftzug.jpg" alt="Schriftzug-Tattoo mit den Jahreszahlen 1980 und 1981" />
-            </figure>
-          </div>
+        <div class="wrap">
+          <div class="work-slideshow" data-slideshow></div>
         </div>
         <div class="wrap gallery-cta">
           <a class="btn btn-primary" href="projekte.html">Mehr Projekte ansehen</a>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="reviews-heading">
+      <section class="section" aria-labelledby="reviews-heading" hidden>
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">Stimmen</p>
@@ -240,8 +225,16 @@
 
     <footer class="site-footer">
       <div class="wrap footer-inner">
-        <p class="logo">Kaddies Arts</p>
-        <p class="footer-copy">© <span data-year></span> Kaddies_Arts</p>
+        <div class="footer-brand">
+          <p class="logo">Kaddies Arts</p>
+          <p class="footer-copy">© <span data-year></span> Kaddies_Arts</p>
+        </div>
+        <nav class="footer-nav" aria-label="Fußzeilennavigation">
+          <a href="index.html" aria-current="page">Startseite</a>
+          <a href="ueber-mich.html">Über mich</a>
+          <a href="wannados.html">Wannados</a>
+          <a href="projekte.html">Projekte</a>
+        </nav>
         <div class="footer-contact">
           <div class="footer-actions">
             <a

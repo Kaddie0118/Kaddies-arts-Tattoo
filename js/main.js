@@ -127,23 +127,23 @@ document.querySelectorAll("[data-year]").forEach((el) => {
   el.textContent = year;
 });
 
-const introPhoto = document.querySelector(".intro-photo");
-if (introPhoto && !reduceMotion) {
+if (!reduceMotion) {
   const maxTilt = 4;
+  document.querySelectorAll(".intro-photo, .certificate-visual").forEach((photo) => {
+    photo.addEventListener("mousemove", (event) => {
+      const rect = photo.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      const rotateY = (x - 0.5) * 2 * maxTilt;
+      const rotateX = (0.5 - y) * 2 * maxTilt;
+      photo.style.transition = "transform 0.12s ease-out, box-shadow 0.2s ease, border-color 0.2s ease";
+      photo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
 
-  introPhoto.addEventListener("mousemove", (event) => {
-    const rect = introPhoto.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
-    const rotateY = (x - 0.5) * 2 * maxTilt;
-    const rotateX = (0.5 - y) * 2 * maxTilt;
-    introPhoto.style.transition = "transform 0.12s ease-out, box-shadow 0.2s ease, border-color 0.2s ease";
-    introPhoto.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
-
-  introPhoto.addEventListener("mouseleave", () => {
-    introPhoto.style.transition = "transform 0.45s ease, box-shadow 0.2s ease, border-color 0.2s ease";
-    introPhoto.style.transform = "rotateX(0deg) rotateY(0deg)";
+    photo.addEventListener("mouseleave", () => {
+      photo.style.transition = "transform 0.45s ease, box-shadow 0.2s ease, border-color 0.2s ease";
+      photo.style.transform = "rotateX(0deg) rotateY(0deg)";
+    });
   });
 }
 
@@ -299,6 +299,8 @@ function updateGridCorners(grid, itemSelector) {
 function updateOuterGridCorners() {
   updateGridCorners(document.querySelector(".mini-gallery"), ".mini-project");
   updateGridCorners(document.querySelector("[data-wannado-grid]"), ".wannado");
+  updateGridCorners(document.querySelector(".services"), ".service-card");
+  updateGridCorners(document.querySelector(".reviews"), ".review-card");
 }
 
 const miniFilters = document.querySelector("[data-mini-filters]");
@@ -333,57 +335,283 @@ if (miniFilters && miniGallery) {
 
   miniGallery.addEventListener("click", (event) => {
     const caption = event.target.closest(".mini-project-tag");
-    const item = caption?.closest(".mini-project");
-    if (!item?.dataset.kind) return;
-    const input = miniFilters.querySelector(`[data-kind="${item.dataset.kind}"]`);
-    if (!input) return;
-    input.checked = !input.checked;
-    applyMiniFilters();
+    if (caption) {
+      const item = caption.closest(".mini-project");
+      if (!item?.dataset.kind) return;
+      const input = miniFilters.querySelector(`[data-kind="${item.dataset.kind}"]`);
+      if (!input) return;
+      input.checked = !input.checked;
+      applyMiniFilters();
+      return;
+    }
+
+    const item = event.target.closest(".mini-project");
+    const img = item?.querySelector("img");
+    if (!img || item.hidden) return;
+    openMiniLightbox(img);
   });
 
   applyMiniFilters();
 }
 
+function createMiniLightbox() {
+  const box = document.createElement("div");
+  box.className = "lightbox";
+  box.hidden = true;
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-modal", "true");
+  box.setAttribute("aria-label", "Bildansicht");
+  box.innerHTML = `
+    <button class="lightbox-close" type="button" aria-label="Schließen">×</button>
+    <button class="lightbox-prev" type="button" aria-label="Vorheriges Bild">‹</button>
+    <img class="lightbox-image" alt="" />
+    <button class="lightbox-next" type="button" aria-label="Nächstes Bild">›</button>
+  `;
+  document.body.append(box);
+  return box;
+}
+
+function openMiniLightbox(startImg) {
+  const gallery = document.querySelector("[data-mini-gallery]") || document.querySelector(".mini-gallery");
+  if (!gallery) return;
+
+  const visibleImgs = [...gallery.querySelectorAll(".mini-project:not([hidden]) img")];
+  let index = visibleImgs.indexOf(startImg);
+  if (index < 0) index = 0;
+
+  const box = document.querySelector(".lightbox") || createMiniLightbox();
+  const image = box.querySelector(".lightbox-image");
+  const closeBtn = box.querySelector(".lightbox-close");
+  const prevBtn = box.querySelector(".lightbox-prev");
+  const nextBtn = box.querySelector(".lightbox-next");
+
+  function show(nextIndex) {
+    index = (nextIndex + visibleImgs.length) % visibleImgs.length;
+    const current = visibleImgs[index];
+    image.src = current.currentSrc || current.src;
+    image.alt = current.alt || "";
+  }
+
+  function close() {
+    box.hidden = true;
+    document.body.classList.remove("is-lightbox-open");
+    document.removeEventListener("keydown", onKey);
+  }
+
+  function onKey(event) {
+    if (event.key === "Escape") close();
+    if (event.key === "ArrowLeft") show(index - 1);
+    if (event.key === "ArrowRight") show(index + 1);
+  }
+
+  closeBtn.onclick = close;
+  prevBtn.onclick = () => show(index - 1);
+  nextBtn.onclick = () => show(index + 1);
+  box.onclick = (event) => {
+    if (event.target === box) close();
+  };
+
+  document.addEventListener("keydown", onKey);
+  document.body.classList.add("is-lightbox-open");
+  box.hidden = false;
+  show(index);
+  closeBtn.focus();
+}
+
 updateOuterGridCorners();
 window.addEventListener("resize", updateOuterGridCorners);
 
-document.querySelectorAll("[data-slideshow]").forEach((slideshow) => {
-  const slides = [...slideshow.querySelectorAll(".work-slide")];
-  const dotsWrap = slideshow.querySelector("[data-slideshow-dots]");
-  if (!slides.length) return;
+const workSlideshowSlides = [
+  {
+    src: "img/gallery/tausendfuessler-freehand.jpg",
+    alt: "Freehand-Tattoo eines Tausendfüßlers",
+  },
+  {
+    src: "img/gallery/naruto-animepanel.jpg",
+    alt: "Manga-Panel Tattoo mit einem Anime-Auge",
+  },
+  {
+    src: "img/gallery/engelsfluegel-wannado.jpg",
+    alt: "Wannado-Tattoo mit Engelsflügeln am Handgelenk",
+  },
+  {
+    src: "img/gallery/datum-schriftzug.jpg",
+    alt: "Schriftzug-Tattoo mit den Jahreszahlen 1980 und 1981",
+  },
+  {
+    src: "img/gallery/sonnenblumen-freehand.jpg",
+    alt: "Freehand-Tattoo von zwei Sonnenblumen auf einem Unterarm",
+  },
+];
 
-  let index = slides.findIndex((slide) => slide.classList.contains("is-active"));
-  if (index < 0) index = 0;
+function createWorkSlide(item) {
+  const figure = document.createElement("figure");
+  figure.className = "work-slide";
+  const img = document.createElement("img");
+  img.src = item.src;
+  img.alt = item.alt;
+  figure.append(img);
+  return figure;
+}
+
+document.querySelectorAll("[data-slideshow]").forEach((slideshow) => {
+  const items = workSlideshowSlides;
+  const count = items.length;
+  if (!count) return;
+
+  const frame = document.createElement("div");
+  frame.className = "work-slideshow-frame";
+  const track = document.createElement("div");
+  track.className = "work-slideshow-track";
+  const dotsWrap = document.createElement("div");
+  dotsWrap.className = "work-slideshow-dots";
+
+  const lead = createWorkSlide(items[count - 1]);
+  const slides = items.map((item) => createWorkSlide(item));
+  const trail = createWorkSlide(items[0]);
+  const nodes = [lead, ...slides, trail];
+  nodes.forEach((node) => track.append(node));
+
+  frame.append(track);
+  slideshow.replaceChildren(frame, dotsWrap);
+
+  let index = 0;
   let timer = null;
+  let locked = false;
 
   const dots = slides.map((_, i) => {
     const dot = document.createElement("button");
     dot.type = "button";
     dot.className = "work-slideshow-dot";
     dot.setAttribute("aria-label", `Bild ${i + 1}`);
-    dot.addEventListener("click", () => show(i));
-    dotsWrap?.append(dot);
+    dot.addEventListener("click", () => {
+      if (i === index) return;
+      if (i === (index + 1) % count) step(1);
+      else if (i === (index - 1 + count) % count) step(-1);
+      else goTo(i, true);
+    });
+    dotsWrap.append(dot);
     return dot;
   });
 
-  function show(nextIndex) {
-    index = (nextIndex + slides.length) % slides.length;
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("is-active", i === index);
+  function centerOn(el, animate) {
+    const offset = frame.clientWidth / 2 - (el.offsetLeft + el.offsetWidth / 2);
+    if (!animate || reduceMotion) {
+      track.style.transition = "none";
+      track.style.transform = `translateX(${offset}px)`;
+      void track.offsetWidth;
+      track.style.transition = "";
+      return;
+    }
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  function setClasses(realIndex, activeNode = slides[realIndex]) {
+    const prev = (realIndex - 1 + count) % count;
+    const next = (realIndex + 1) % count;
+    nodes.forEach((node) => {
+      node.classList.remove("is-active", "is-prev", "is-next");
     });
+    activeNode.classList.add("is-active");
+    if (activeNode === trail) {
+      slides[count - 1].classList.add("is-prev");
+    } else if (activeNode === lead) {
+      slides[0].classList.add("is-next");
+    } else {
+      (realIndex === 0 ? lead : slides[prev]).classList.add("is-prev");
+      (realIndex === count - 1 ? trail : slides[next]).classList.add("is-next");
+    }
     dots.forEach((dot, i) => {
-      dot.classList.toggle("is-active", i === index);
+      dot.classList.toggle("is-active", i === realIndex);
     });
+  }
+
+  function afterTransition(done) {
+    const onEnd = (event) => {
+      if (event.target !== track || event.propertyName !== "transform") return;
+      track.removeEventListener("transitionend", onEnd);
+      done();
+    };
+    track.addEventListener("transitionend", onEnd);
+  }
+
+  function goTo(realIndex, animate) {
+    if (locked) return;
+    index = (realIndex + count) % count;
+    setClasses(index);
+    centerOn(slides[index], animate);
     restart();
   }
+
+  function step(delta) {
+    if (locked) return;
+    const from = index;
+    const to = (index + delta + count) % count;
+
+    if (reduceMotion) {
+      goTo(to, false);
+      return;
+    }
+
+    if (delta > 0 && from === count - 1) {
+      locked = true;
+      setClasses(0, trail);
+      centerOn(trail, true);
+      afterTransition(() => {
+        index = 0;
+        setClasses(0);
+        centerOn(slides[0], false);
+        locked = false;
+        restart();
+      });
+      return;
+    }
+
+    if (delta < 0 && from === 0) {
+      locked = true;
+      setClasses(count - 1, lead);
+      centerOn(lead, true);
+      afterTransition(() => {
+        index = count - 1;
+        setClasses(count - 1);
+        centerOn(slides[count - 1], false);
+        locked = false;
+        restart();
+      });
+      return;
+    }
+
+    goTo(to, true);
+  }
+
+  lead.addEventListener("click", () => step(-1));
+  trail.addEventListener("click", () => step(1));
+  slides.forEach((slide, i) => {
+    slide.addEventListener("click", () => {
+      if (i === index) return;
+      if (slide.classList.contains("is-prev")) step(-1);
+      else if (slide.classList.contains("is-next")) step(1);
+      else goTo(i, true);
+    });
+  });
 
   function restart() {
     window.clearInterval(timer);
     if (reduceMotion) return;
-    timer = window.setInterval(() => show(index + 1), 5000);
+    timer = window.setInterval(() => step(1), 5000);
   }
 
+  function recenter() {
+    centerOn(slides[index], false);
+  }
+
+  track.querySelectorAll("img").forEach((img) => {
+    if (img.complete) recenter();
+    else img.addEventListener("load", recenter);
+  });
+
+  window.addEventListener("resize", recenter);
   slideshow.addEventListener("mouseenter", () => window.clearInterval(timer));
   slideshow.addEventListener("mouseleave", restart);
-  show(index);
+  goTo(0, false);
 });
