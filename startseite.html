@@ -3,10 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projekte · Kathi</title>
+    <title>Startseite · Kathi</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <div class="ink-bg" aria-hidden="true">
+      <video autoplay muted loop playsinline>
+        <source src="video/ink-liquid.mp4" type="video/mp4" />
+      </video>
+    </div>
     <header class="site-header">
       <nav class="nav" aria-label="Hauptnavigation">
         <a class="logo" href="startseite.html">Kaddies Arts</a>
@@ -14,10 +19,10 @@
           <span class="nav-burger" aria-hidden="true"></span>
         </button>
         <ul class="nav-links" id="nav-links">
-          <li><a href="startseite.html">Startseite</a></li>
+          <li><a href="startseite.html" aria-current="page">Startseite</a></li>
           <li><a href="ueber-mich.html">Über mich</a></li>
           <li><a class="nav-wannado" href="wannados.html">Wannados<span class="nav-new">NEW</span></a></li>
-          <li><a href="projekte.html" aria-current="page">Projekte</a></li>
+          <li><a href="projekte.html">Projekte</a></li>
           <li class="nav-contact">
             <button
               class="btn btn-primary nav-contact-btn"
@@ -56,122 +61,135 @@
     </header>
 
     <main>
-      <section class="page-hero wrap">
-        <p class="eyebrow">Projekte</p>
-        <h1>Meine Arbeiten</h1>
-        <p class="lead">
-          Hier findest du ein paar meiner Lieblingsarbeiten. Mehr findest du auf
-          meinem Instagram Profil.
-        </p>
+      <section class="hero">
+        <div class="wrap hero-inner">
+          <div class="hero-copy">
+            <h1>Ink with character</h1>
+            <p class="lead">
+              Willkommen bei Kaddies Arts: Individuelle Tattoos, Freehands &
+              Wannados. Tattoos mit Liebe zum Detail und einem offenen Ohr für
+              deine Ideen.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="projekte.html">Projekte ansehen</a>
+              <a class="btn btn-ghost" href="#kennenlernen">Mehr zu mir</a>
+            </div>
+          </div>
+          <aside class="showstopper">
+            <p>NEUE Wannados erhältlich!</p>
+            <a class="btn btn-primary" href="wannados.html">Zu den Wannados</a>
+          </aside>
+        </div>
       </section>
 
-      <section class="section wrap" aria-label="Meine Arbeit">
-        <div class="mini-toolbar">
-          <div class="wannado-filters mini-filters" data-mini-filters>
-            <label class="wannado-check">
-              <input type="checkbox" data-kind="wunschtattoo" />
-              Wunschtattoos
-            </label>
-            <label class="wannado-check">
-              <input type="checkbox" data-kind="wannado" />
-              Wannados
-            </label>
-            <label class="wannado-check">
-              <input type="checkbox" data-kind="freehand" />
-              Freehand-Tattoos
-            </label>
-            <button class="wannado-select-toggle wannado-select-reset" type="button" data-show-all>
-              Alle anzeigen
-            </button>
+      <section class="section" aria-labelledby="services-heading">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 id="services-heading">Meine Leistungen</h2>
+          </div>
+          <div class="grid-3 services">
+            <article class="card service-card">
+              <div class="service-main">
+                <h3>Freehand Tattoo</h3>
+                <p>
+                  Du möchtest ein einzigartiges handgezeichnetes Motiv, das niemand
+                  außer dir hat? Dann bist du hier richtig.
+                </p>
+              </div>
+              <a class="btn btn-primary" href="#kontakt">Anfragen</a>
+              <div class="service-visual">
+                <img src="img/icons/freehand.png" alt="" />
+              </div>
+            </article>
+            <article class="card service-card" id="wannados">
+              <div class="service-main">
+                <h3>Wannados</h3>
+                <p>
+                  Du hast dich in eines meiner Designs verliebt? Dann sichere dir
+                  dein Lieblingsmotiv.
+                </p>
+              </div>
+              <a class="btn btn-primary" href="wannados.html">Wannado sichern</a>
+              <div class="service-visual">
+                <img src="img/icons/wannados.png" alt="" />
+              </div>
+            </article>
+            <article class="card service-card">
+              <div class="service-main">
+                <h3>Wunschtattoos</h3>
+                <p>
+                  Du hast eine Idee? Lass sie uns gemeinsam umsetzen.
+                </p>
+              </div>
+              <a class="btn btn-primary" href="#kontakt">Anfragen</a>
+              <div class="service-visual">
+                <img src="img/icons/wunschtattoo.png" alt="" />
+              </div>
+            </article>
           </div>
         </div>
-        <div class="mini-gallery" data-mini-gallery>
-          <figure class="mini-project" data-kind="wannado">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wannado</span>
-              <img src="img/gallery/engelsfluegel-wannado.jpg" alt="Wannado-Tattoo mit Engelsflügeln am Handgelenk" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/rose-mit-datum.jpg" alt="Wunschprojekt: Rose mit Datum 18.05.2003 am Unterarm" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/naruto-wunschtattoo.jpg" alt="Wunschtattoo: Manga-Panel mit einem Anime-Auge" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/datum-wunschtattoo.jpg" alt="Wunschtattoo: Schriftzug mit den Jahreszahlen 1980 und 1981" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/kristall-schlange-wunschtattoo.jpg" alt="Wunschtattoo: Schlange um Kristalle" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/katze-mond-wunschtattoo.png" alt="Wunschtattoo: Katze an einem Planeten unter dem Mond" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/schwalbe-wunschtattoo.jpg" alt="Wunschtattoo: Schwalbe im Flug" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/rose-feinlinie-wunschtattoo.jpg" alt="Wunschtattoo: Fine-Line Rose mit Stiel und Blättern" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/kalligraphie-wunschtattoo.png" alt="Wunschtattoo: Kalligraphie-Schriftzug in Schwarz und Rot" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/nacken-symbol-wunschtattoo.png" alt="Wunschtattoo: Schwarzes Symbol im Nacken" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/sasuke-wunschtattoo.jpg" alt="Wunschtattoo: Manga-Panel mit Sasuke-Portrait" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="wunschtattoo">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Wunschtattoo</span>
-              <img src="img/gallery/minimal-striche-wunschtattoo.png" alt="Wunschtattoo: Minimales Fine-Line Motiv mit Strichen und Punkten" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="freehand">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Freehand-Tattoo</span>
-              <img src="img/gallery/sonnenblumen-freehand.jpg" alt="Freehand-Tattoo von zwei Sonnenblumen auf einem Unterarm" />
-            </div>
-          </figure>
-          <figure class="mini-project" data-kind="freehand">
-            <div class="mini-project-visual">
-              <span class="mini-project-tag">Freehand-Tattoo</span>
-              <img src="img/gallery/tausendfuessler-freehand.jpg" alt="Freehand-Tattoo eines Tausendfüßlers" />
-            </div>
-          </figure>
+      </section>
+
+      <section class="section" id="kennenlernen" aria-labelledby="intro-heading">
+        <div class="wrap intro">
+          <div class="intro-photo">
+            <img src="img/kathi-portrait.jpg" alt="Kathi von Kaddies Arts" />
+          </div>
+          <div class="intro-copy">
+            <h2 id="intro-heading">Hallo, ich bin Kathi.</h2>
+            <p>
+              Hey du, schön, dass du meine Seite besuchst. Ich bin Kathi und ich
+              liebe es euch mit meiner Arbeit ein Lächeln aufs Gesicht zu
+              zaubern. Bei mir ist jeder willkommen. Ich freue mich auf dich.
+            </p>
+            <a class="btn btn-primary" href="ueber-mich.html">Mehr über mich</a>
+          </div>
         </div>
-        <p class="wannado-empty" data-mini-empty hidden>Keine Projekte zu diesem Filter.</p>
+      </section>
+
+      <section class="section gallery-section" aria-labelledby="gallery-heading">
+        <div class="wrap section-head">
+          <p class="eyebrow">Galerie</p>
+          <h2 id="gallery-heading">Einblicke in meine Arbeit :)</h2>
+        </div>
+        <div class="wrap">
+          <div class="work-slideshow" data-slideshow></div>
+        </div>
+        <div class="wrap gallery-cta">
+          <a class="btn btn-primary" href="projekte.html">Mehr Projekte ansehen</a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="reviews-heading" hidden>
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Stimmen</p>
+            <h2 id="reviews-heading">Kunden&shy;bewertungen</h2>
+          </div>
+          <div class="grid-3 reviews">
+            <blockquote class="card review-card">
+              <p>
+                „Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                vitae nisl vitae sapien tincidunt tincidunt.“
+              </p>
+              <footer>— Vorname N.</footer>
+            </blockquote>
+            <blockquote class="card review-card">
+              <p>
+                „Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.“
+              </p>
+              <footer>— Vorname N.</footer>
+            </blockquote>
+            <blockquote class="card review-card">
+              <p>
+                „Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur.“
+              </p>
+              <footer>— Vorname N.</footer>
+            </blockquote>
+          </div>
+        </div>
       </section>
 
       <section class="section" id="kontakt" aria-labelledby="cta-heading">
@@ -210,10 +228,10 @@
           </nav>
         </div>
         <nav class="footer-nav" aria-label="Fußzeilennavigation">
-          <a href="startseite.html">Startseite</a>
+          <a href="startseite.html" aria-current="page">Startseite</a>
           <a href="ueber-mich.html">Über mich</a>
           <a href="wannados.html">Wannados</a>
-          <a href="projekte.html" aria-current="page">Projekte</a>
+          <a href="projekte.html">Projekte</a>
         </nav>
         <div class="footer-contact">
           <div class="footer-actions">
